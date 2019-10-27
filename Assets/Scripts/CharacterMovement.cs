@@ -9,7 +9,6 @@ public class CharacterMovement : MonoBehaviour
     public float walkSpeed = 10f;
     public float runSpeed = 20f;
 
-    [Space]
     [Header("Movement & Rotation Smoothing")]
     public float smoothTime = 0.1f;
 

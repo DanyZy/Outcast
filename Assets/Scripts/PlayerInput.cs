@@ -3,11 +3,9 @@
 [RequireComponent(typeof(CharacterMovement))]
 public class PlayerInput : MonoBehaviour
 {
-    [Space]
     [Header("Ragdoll Movement Toggle")]
     public bool isSmooth = false;
 
-    [Space]
     [Header("Run Button")]
     public KeyCode acceleration = KeyCode.LeftShift;
 
@@ -22,7 +20,6 @@ public class PlayerInput : MonoBehaviour
 
     void FixedUpdate()
     {
-
         input.x = Input.GetAxis("Horizontal");
         input.y = Input.GetAxis("Vertical");
 
