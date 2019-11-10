@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CharacterCollisionSystem))]
 public class CharacterMovement : MonoBehaviour
 {
     Rigidbody rb;
+    CharacterCollisionSystem ccs;
 
     [Header("Movement Speed")]
     public float walkSpeed = 10f;
@@ -15,7 +17,6 @@ public class CharacterMovement : MonoBehaviour
     private new Transform camera;
 
     private Vector3 moveDirection = Vector3.zero;
-    private bool isGrounded = false;
 
     private float currentVelocityRotate;
     private float currentVelocitySpeed;
@@ -24,6 +25,7 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        ccs = GetComponent<CharacterCollisionSystem>();
         camera = Camera.main.transform;
     }
 
@@ -40,7 +42,7 @@ public class CharacterMovement : MonoBehaviour
             currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref currentVelocitySpeed, smoothTime);
 
             //Movement type selection
-            if (isGrounded)
+            if (ccs.isGrounded())
             {
                 if (isSmoothly)
                 {
@@ -55,24 +57,4 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
-
-#region GroundCheck
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.name == "Ground")
-        {
-            isGrounded = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.name == "Ground")
-        {
-            isGrounded = false;
-        }
-    }
-
-#endregion
 }
