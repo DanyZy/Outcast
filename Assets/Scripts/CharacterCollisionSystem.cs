@@ -2,15 +2,13 @@
 
 public class CharacterCollisionSystem : MonoBehaviour
 {
-    public bool groundFlag = false;
-    public GameObject currentCollision;
+    bool groundFlag = false;
+
+    public delegate void OnCollisionFunction(Collision collision);
+
+    public OnCollisionFunction onCollisionEnterFunction;
 
  #region Getters
-
-    public GameObject GetCurrentCollision()
-    {
-        return currentCollision;
-    }
 
     public bool isGrounded()
     {
@@ -21,11 +19,11 @@ public class CharacterCollisionSystem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        currentCollision = collision.gameObject;
+        onCollisionEnterFunction(collision);
 
         if (collision.gameObject.tag == "Ground")
         {
             groundFlag = true;
-        }
+        } 
     }
 }

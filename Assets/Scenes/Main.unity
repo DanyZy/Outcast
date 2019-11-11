@@ -275,8 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dcdd49ad44c377458854f9282d54625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundFlag: 0
-  currentCollision: {fileID: 0}
 --- !u!1 &626063423
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa801cd6470481f40a3177bece0dcaa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 517015801}
+  playerCCS: {fileID: 517015809}
   platformPrefab: {fileID: 1561264622}
   parentGround: {fileID: 1765800982}
   platformPositions:
