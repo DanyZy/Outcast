@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
 
 public class GroundTiling : MonoBehaviour
 {
+    [Header("Character Collision Manager")]
     public CharacterCollisionSystem playerCCS;
+
+    [Header("Ground Setup")]
     public GameObject platformPrefab;
     public Transform parentGround;
 
-    public Vector3[] platformPositions = new Vector3[8];
+    Vector3[] platformPositions = new Vector3[6];
 
     void Start()
     {
+        //Initional platform
+        Instantiate(platformPrefab, Vector3.zero, Quaternion.identity, parentGround);
+
         playerCCS.onCollisionEnterFunction = CreateNewPlatform;
     }
 
@@ -19,23 +23,13 @@ public class GroundTiling : MonoBehaviour
     {
         Transform currentCollision = _collision.gameObject.transform;
 
-        Vector3 distanceFromCentreVector;
-        Vector3 cathet = new Vector3(currentCollision.localScale.x, 0, 0);
-        Vector3 hypotenuse = new Vector3(Mathf.Sqrt(2 * Mathf.Pow(currentCollision.localScale.x, 2)), 0, 0);
+        Vector3 distanceVector = new Vector3(HexMetrics.innerRadius * 2f, 0, 0);
 
         for (int i = 0; i < platformPositions.Length; i++)
         {
-            if (i % 2 == 0)
-            {
-                distanceFromCentreVector = cathet;
-            }
-            else
-            {
-                distanceFromCentreVector = hypotenuse;
-            }
+            platformPositions[i] = currentCollision.position + Quaternion.Euler(0, i * 60, 0) * distanceVector;
 
-            platformPositions[i] = currentCollision.position + Quaternion.Euler(0, i * 45, 0) * distanceFromCentreVector;
-
+            //Someday I'll regret for this crutch
             if (!Physics.CheckSphere(platformPositions[i], currentCollision.localScale.x * 0.01f))
             {
                 Instantiate(platformPrefab, platformPositions[i], Quaternion.identity, parentGround);
@@ -47,7 +41,7 @@ public class GroundTiling : MonoBehaviour
 
     public void DeleteExistingPlatform(Collision _collision)
     {
-        GameObject currentCollision = _collision.gameObject;
+        Transform currentCollision = _collision.gameObject.transform;
 
         Transform[] platforms = new Transform[parentGround.childCount];
         for (int i = 0; i < parentGround.childCount; i++)
@@ -57,8 +51,10 @@ public class GroundTiling : MonoBehaviour
 
         foreach (Transform platform in platforms)
         {
-            if (Mathf.RoundToInt((platform.position - currentCollision.transform.position).magnitude) >
-                Mathf.RoundToInt((new Vector3(Mathf.Sqrt(2 * Mathf.Pow(currentCollision.transform.localScale.x, 2)), 0, 0)).magnitude))
+            float distanceToPlatform = Mathf.RoundToInt((platform.position - currentCollision.position).magnitude);
+            float desiredDistanceToPlatform = Mathf.RoundToInt(new Vector3(HexMetrics.innerRadius * 2f, 0, 0).magnitude);
+
+            if (distanceToPlatform > desiredDistanceToPlatform)
             {
                 Destroy(platform.gameObject);
             }
