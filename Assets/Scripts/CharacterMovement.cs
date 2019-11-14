@@ -4,8 +4,8 @@
 [RequireComponent(typeof(CharacterCollisionSystem))]
 public class CharacterMovement : MonoBehaviour
 {
-    Rigidbody rb;
-    CharacterCollisionSystem ccs;
+    private Rigidbody rb;
+    private CharacterCollisionSystem ccs;
 
     [Header("Movement Speed")]
     public float walkSpeed = 10f;
@@ -22,7 +22,7 @@ public class CharacterMovement : MonoBehaviour
     private float currentVelocitySpeed;
     private float currentSpeed;
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         ccs = GetComponent<CharacterCollisionSystem>();
@@ -38,7 +38,7 @@ public class CharacterMovement : MonoBehaviour
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref currentVelocityRotate, smoothTime);
 
             //Character speed calculation
-            float targetSpeed = (_isAcceleration ? runSpeed : walkSpeed);
+            float targetSpeed = _isAcceleration ? runSpeed : walkSpeed;
             currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref currentVelocitySpeed, smoothTime);
 
             //Movement type selection

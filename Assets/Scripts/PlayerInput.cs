@@ -9,16 +9,16 @@ public class PlayerInput : MonoBehaviour
     [Header("Run Button")]
     public KeyCode acceleration = KeyCode.LeftShift;
 
-    Vector2 input = Vector2.zero;
+    private Vector2 input = Vector2.zero;
 
-    CharacterMovement cm;
+    private CharacterMovement cm;
 
     private void Start()
     {
         cm = GetComponent<CharacterMovement>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         input.x = Input.GetAxis("Horizontal");
         input.y = Input.GetAxis("Vertical");

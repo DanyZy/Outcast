@@ -2,7 +2,7 @@
 
 public class CharacterCollisionSystem : MonoBehaviour
 {
-    public int groundCollisionCounter = 0;
+    private int groundCollisionCounter = 0;
 
     public delegate void OnCollisionFunction(Collision collision);
 
