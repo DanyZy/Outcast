@@ -26,7 +26,7 @@ public class CameraBehavior : MonoBehaviour
         distanceFromTarget = Mathf.Clamp(distanceFromTarget, minZoom, maxZoom);
 
         //Following targent object calculation
-        currentPosition = Vector3.Lerp(transform.position, (target.position + offset) - transform.forward * distanceFromTarget, movementSmoothTime);
+        currentPosition = Vector3.Lerp(transform.position, target.position + offset - transform.forward * distanceFromTarget, movementSmoothTime);
         transform.position = currentPosition;
     }
 }

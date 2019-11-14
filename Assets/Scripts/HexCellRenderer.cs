@@ -49,5 +49,7 @@ public class HexCellRenderer : MonoBehaviour
         }
         hexMesh.vertices = vertices.ToArray();
         hexMesh.triangles = triangles.ToArray();
+
+        hexMesh.RecalculateNormals();
     }
 }
