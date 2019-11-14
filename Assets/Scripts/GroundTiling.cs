@@ -2,6 +2,9 @@
 
 public class GroundTiling : MonoBehaviour
 {
+    [Header("Initional Platform Position")]
+    public Vector3 startPosition;
+
     [Header("Character Collision Manager")]
     public CharacterCollisionSystem playerCCS;
 
@@ -9,17 +12,17 @@ public class GroundTiling : MonoBehaviour
     public GameObject platformPrefab;
     public Transform parentGround;
 
-    Vector3[] platformPositions = new Vector3[6];
+    private Vector3[] platformPositions = new Vector3[6];
 
-    void Start()
+    private void Start()
     {
         //Initional platform
-        Instantiate(platformPrefab, Vector3.zero, Quaternion.identity, parentGround);
+        Instantiate(platformPrefab, startPosition, Quaternion.identity, parentGround);
 
         playerCCS.onCollisionEnterFunction = CreateNewPlatform;
     }
 
-    public void CreateNewPlatform(Collision _collision)
+    private void CreateNewPlatform(Collision _collision)
     {
         Transform currentCollision = _collision.gameObject.transform;
 
@@ -39,7 +42,7 @@ public class GroundTiling : MonoBehaviour
         DeleteExistingPlatform(_collision);
     }
 
-    public void DeleteExistingPlatform(Collision _collision)
+    private void DeleteExistingPlatform(Collision _collision)
     {
         Transform currentCollision = _collision.gameObject.transform;
 

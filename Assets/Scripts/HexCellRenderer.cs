@@ -6,12 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(MeshCollider))]
 public class HexCellRenderer : MonoBehaviour
 {
-    Mesh hexMesh;
+    private Mesh hexMesh;
 
-    List<Vector3> vertices;
-    List<int> triangles;
+    private List<Vector3> vertices;
+    private List<int> triangles;
 
-    void Awake()
+    private void Awake()
     {
         GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
         hexMesh.name = "Hex Mesh";
@@ -19,14 +19,14 @@ public class HexCellRenderer : MonoBehaviour
         triangles = new List<int>();
     }
 
-    void Start()
+    private void Start()
     {
         Triangulate();
 
         GetComponent<MeshCollider>().sharedMesh = hexMesh;
     }
 
-    void AddTriangle(Vector3 v1, Vector3 v2, Vector3 v3)
+    private void AddTriangle(Vector3 v1, Vector3 v2, Vector3 v3)
     {
         int vertexIndex = vertices.Count;
         vertices.Add(v1);
@@ -37,7 +37,7 @@ public class HexCellRenderer : MonoBehaviour
         triangles.Add(vertexIndex + 2);
     }
 
-    void Triangulate()
+    private void Triangulate()
     {
         for (int i = 0; i < 6; i++)
         {

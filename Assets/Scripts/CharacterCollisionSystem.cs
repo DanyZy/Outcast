@@ -2,20 +2,20 @@
 
 public class CharacterCollisionSystem : MonoBehaviour
 {
-    bool groundFlag = false;
+    private int groundCollisionCounter = 0;
 
     public delegate void OnCollisionFunction(Collision collision);
 
     public OnCollisionFunction onCollisionEnterFunction;
 
- #region Getters
+    #region Getters
 
     public bool isGrounded()
     {
-        return groundFlag;
+        return groundCollisionCounter != 0;
     }
 
-#endregion
+    #endregion
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -23,7 +23,15 @@ public class CharacterCollisionSystem : MonoBehaviour
 
         if (collision.gameObject.tag == "Ground")
         {
-            groundFlag = true;
-        } 
+            groundCollisionCounter++;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            groundCollisionCounter--;
+        }
     }
 }
