@@ -10,6 +10,7 @@ public class HexCellRenderer : MonoBehaviour
 
     private List<Vector3> vertices;
     private List<int> triangles;
+    private List<Vector2> uv;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class HexCellRenderer : MonoBehaviour
         hexMesh.name = "Hex Mesh";
         vertices = new List<Vector3>();
         triangles = new List<int>();
+        uv = new List<Vector2>();
     }
 
     private void Start()
@@ -37,6 +39,13 @@ public class HexCellRenderer : MonoBehaviour
         triangles.Add(vertexIndex + 2);
     }
 
+    private void TextureSetup(Vector2 v1, Vector2 v2, Vector2 v3)
+    {
+        uv.Add(v1);
+        uv.Add(v2);
+        uv.Add(v3);
+    }
+
     private void Triangulate()
     {
         for (int i = 0; i < 6; i++)
@@ -46,9 +55,15 @@ public class HexCellRenderer : MonoBehaviour
                 Vector3.zero + HexMetrics.corners[i],
                 Vector3.zero + HexMetrics.corners[i + 1]
             );
+            TextureSetup(
+                Vector2.zero,
+                Vector2.zero + HexMetrics.uvPoints[i],
+                Vector2.zero + HexMetrics.uvPoints[i + 1]
+            );
         }
         hexMesh.vertices = vertices.ToArray();
         hexMesh.triangles = triangles.ToArray();
+        hexMesh.uv = uv.ToArray();
 
         hexMesh.RecalculateNormals();
     }
