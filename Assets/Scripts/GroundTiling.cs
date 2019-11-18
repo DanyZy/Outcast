@@ -19,6 +19,9 @@ public class GroundTiling : MonoBehaviour
         //Initional platform
         Instantiate(platformPrefab, startPosition, Quaternion.identity, parentGround);
 
+        Instantiate(platformPrefab, startPosition + new Vector3(100, 0, 0), Quaternion.identity, parentGround);
+
+
         playerCCS.onCollisionEnterFunction = CreateNewPlatform;
     }
 
