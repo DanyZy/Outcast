@@ -11,6 +11,15 @@ public class Pooler : MonoBehaviour
         public GameObject prefab;
     }
 
+    #region Singleton
+    public static Pooler Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+    #endregion
+
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
@@ -31,5 +40,25 @@ public class Pooler : MonoBehaviour
 
             poolDictionary.Add(pool.tag, objectPool);
         }
+    }
+
+    public GameObject SpawnPoolObject(string _tag, Vector3 _position, Quaternion _rotation)
+    {
+        if (!poolDictionary.ContainsKey(_tag))
+        {
+            Debug.Log("Object with tag " + _tag + " doesn't exist");
+            return null;
+        }
+
+        GameObject objectToSpawn = poolDictionary[_tag].Dequeue();
+
+        objectToSpawn.transform.localPosition = _position;
+        objectToSpawn.transform.localRotation = _rotation;
+
+        objectToSpawn.SetActive(true);
+
+        poolDictionary[_tag].Enqueue(objectToSpawn);
+
+        return objectToSpawn;
     }
 }
