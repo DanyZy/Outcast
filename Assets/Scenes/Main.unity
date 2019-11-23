@@ -157,9 +157,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: 
-    size: 0
-    prefab: {fileID: 0}
+  - tag: Bot
+    size: 100
+    prefab: {fileID: 3208771475119772891, guid: 3ffb33cd3de2fad429d0444783399bbb,
+      type: 3}
+--- !u!114 &626063427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626063423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd993363165041b44a5c58146423054a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &684653492
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,16 +435,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5226002897108064852, guid: a6d7f3bee7c6c314880b7b9357210eed,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5226002897108064852, guid: a6d7f3bee7c6c314880b7b9357210eed,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5226002897108064851, guid: a6d7f3bee7c6c314880b7b9357210eed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -487,6 +490,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5226002897108064852, guid: a6d7f3bee7c6c314880b7b9357210eed,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5226002897108064852, guid: a6d7f3bee7c6c314880b7b9357210eed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6d7f3bee7c6c314880b7b9357210eed, type: 3}
 --- !u!1001 &6113394060997893778
@@ -500,6 +513,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Game Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113394060508260013, guid: 8b2789d861132a047b65f1c8031baa08,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6113394060508260051, guid: 8b2789d861132a047b65f1c8031baa08,
         type: 3}

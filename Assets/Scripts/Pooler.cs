@@ -57,9 +57,14 @@ public class Pooler : MonoBehaviour
 
         objectToSpawn.SetActive(true);
 
-        objectToSpawn.GetComponent<IPooled>().OnObjectSpawn();
+        IPooled pooledObject = objectToSpawn.GetComponent<IPooled>();
 
-        poolDictionary[_tag].Enqueue(objectToSpawn);
+        if(pooledObject != null)
+        {
+            pooledObject.OnObjectSpawn();
+        }
+
+        //poolDictionary[_tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
     }
