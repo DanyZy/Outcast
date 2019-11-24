@@ -27,13 +27,15 @@ public class Pooler : MonoBehaviour
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-        foreach(Pool pool in pools)
+        foreach (Pool pool in pools)
         {
+            GameObject poolContainer = new GameObject(pool.tag + " Container");
+
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
-            for(int i = 0; i < pool.size; i++)
+            for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab, poolContainer.transform);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -59,12 +61,12 @@ public class Pooler : MonoBehaviour
 
         IPooled pooledObject = objectToSpawn.GetComponent<IPooled>();
 
-        if(pooledObject != null)
+        if (pooledObject != null)
         {
             pooledObject.OnObjectSpawn();
         }
 
-        //poolDictionary[_tag].Enqueue(objectToSpawn);
+        poolDictionary[_tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
     }
@@ -79,7 +81,7 @@ public class Pooler : MonoBehaviour
             return null;
         }
 
-        foreach(GameObject objectToSpawn in poolDictionary[_tag])
+        foreach (GameObject objectToSpawn in poolDictionary[_tag])
         {
             objectToSpawn.transform.localPosition = _positions.Dequeue();
             objectToSpawn.transform.localRotation = _rotations.Dequeue();
