@@ -68,4 +68,34 @@ public class Pooler : MonoBehaviour
 
         return objectToSpawn;
     }
+
+    public List<GameObject> SpawnEntirePool(string _tag, Queue<Vector3> _positions, Queue<Quaternion> _rotations)
+    {
+        List<GameObject> objectsToSpawn = new List<GameObject>();
+
+        if (!poolDictionary.ContainsKey(_tag))
+        {
+            Debug.Log("Object with tag " + _tag + " doesn't exist");
+            return null;
+        }
+
+        foreach(GameObject objectToSpawn in poolDictionary[_tag])
+        {
+            objectToSpawn.transform.localPosition = _positions.Dequeue();
+            objectToSpawn.transform.localRotation = _rotations.Dequeue();
+
+            objectToSpawn.SetActive(true);
+
+            IPooled pooledObject = objectToSpawn.GetComponent<IPooled>();
+
+            if (pooledObject != null)
+            {
+                pooledObject.OnObjectSpawn();
+            }
+
+            objectsToSpawn.Add(objectToSpawn);
+        }
+
+        return objectsToSpawn;
+    }
 }
