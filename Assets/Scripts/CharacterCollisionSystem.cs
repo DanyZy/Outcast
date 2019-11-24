@@ -19,10 +19,10 @@ public class CharacterCollisionSystem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        onCollisionEnterFunction(collision);
-
         if (collision.gameObject.tag == "Ground")
         {
+            onCollisionEnterFunction(collision);
+
             groundCollisionCounter++;
         }
     }
