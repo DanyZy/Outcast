@@ -11,6 +11,9 @@ public class Pooler : MonoBehaviour
         public GameObject prefab;
     }
 
+    public List<Pool> pools;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
+
     #region Singleton
     public static Pooler Instance;
 
@@ -19,9 +22,6 @@ public class Pooler : MonoBehaviour
         Instance = this;
     }
     #endregion
-
-    public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     private void Start()
     {

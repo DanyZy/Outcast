@@ -8,6 +8,8 @@ public class BotSpawner : MonoBehaviour
 {
     private void Start()
     {
+        //Pooler.Instance.SpawnPoolObject("HexCells", Vector3.zero, Quaternion.identity);
+
         Queue<Vector3> positions = new Queue<Vector3>();
         Queue<Quaternion> rotations = new Queue<Quaternion>();
 
@@ -17,19 +19,6 @@ public class BotSpawner : MonoBehaviour
             rotations.Enqueue(Quaternion.identity);
         }
 
-        Pooler.Instance.SpawnEntirePool("Bot", positions, rotations);
+        Pooler.Instance.SpawnEntirePool("Bots", positions, rotations);
     }
-
-    //void FixedUpdate()
-    //{
-    //    try
-    //    {
-    //        Pooler.Instance.SpawnPoolObject("Bot", new Vector3(Random.Range(-150, 150), 3, Random.Range(-150, 150)), Quaternion.identity);
-    //    }
-    //    catch (InvalidOperationException e)
-    //    {
-    //        Debug.Log("All objects from pool already spawned");
-    //        Debug.Log(e);
-    //    }
-    //}
 }

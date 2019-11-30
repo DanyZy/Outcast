@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6113394060508260051}
   - component: {fileID: 6113394060508260050}
+  - component: {fileID: 871562346590978406}
+  - component: {fileID: 4333156134979598518}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -38,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6113394060508260013}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa801cd6470481f40a3177bece0dcaa2, type: 3}
   m_Name: 
@@ -48,3 +50,38 @@ MonoBehaviour:
   platformPrefab: {fileID: 3833565049506485905, guid: a977dabbcd015284db86f116f35a172b,
     type: 3}
   parentGround: {fileID: 0}
+--- !u!114 &871562346590978406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113394060508260013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71553c8fce1abdf45ae99a22b7b90af5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: HexCells
+    size: 36
+    prefab: {fileID: 3833565049506485905, guid: a977dabbcd015284db86f116f35a172b,
+      type: 3}
+  - tag: Bots
+    size: 100
+    prefab: {fileID: 3208771475119772891, guid: 3ffb33cd3de2fad429d0444783399bbb,
+      type: 3}
+--- !u!114 &4333156134979598518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113394060508260013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ff15ddbf465f144a1448fbed01fdfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 6
+  height: 6
