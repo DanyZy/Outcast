@@ -30,28 +30,20 @@ public class HexGrid : MonoBehaviour
 
     private void CreateCell(int x, int z)
     {
-        float abscissa;
         Vector3 position;
 
-        if (z > 0)
-        {
-            abscissa = (x - z * 0.5f + z / 2);
-        }
-        else
-        {
-            abscissa = (x + z * 0.5f - z / 2);
-        }
-
-        position.x = abscissa * (HexMetrics.innerRadius * 2f);
+        position.x = (x + z * 0.5f - z / 2) * (HexMetrics.innerRadius * 2f);
         position.y = 0f;
         position.z = z * (HexMetrics.outerRadius * 1.5f);
 
-        Pooler.Instance.SpawnPoolObject("HexCells", position, Quaternion.identity);
+        GameObject cell = Pooler.Instance.SpawnPoolObject("HexCells", position, Quaternion.identity);
+        cell.GetComponent<HexBehavior>().coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
 
         Text label = Instantiate(cellLabelPrefab);
         label.rectTransform.SetParent(gridCanvas.transform, false);
         label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
-        label.text = x.ToString() + "\n" + z.ToString();
+        label.text = cell.GetComponent<HexBehavior>().coordinates.ToStringOnSeparateLines();
+
     }
 
 
