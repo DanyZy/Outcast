@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: HexCells
-    size: 36
+    size: 100
     prefab: {fileID: 3833565049506485905, guid: a977dabbcd015284db86f116f35a172b,
       type: 3}
   - tag: Bots
