@@ -23,7 +23,7 @@ public class Pooler : MonoBehaviour
     }
     #endregion
 
-    private void Start()
+    private void OnEnable()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 

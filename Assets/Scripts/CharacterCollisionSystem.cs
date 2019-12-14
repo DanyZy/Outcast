@@ -21,7 +21,7 @@ public class CharacterCollisionSystem : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            onCollisionEnterFunction(collision);
+            //onCollisionEnterFunction(collision);
 
             groundCollisionCounter++;
         }
